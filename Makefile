@@ -1,6 +1,6 @@
 all:
 	hugo
 s:
-	hugo server -D
+	$(HOME)/.cache/hvm/v0.124.1/hugo server -D
 clean:
 	rm -rf public data
