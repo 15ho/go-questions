@@ -25,7 +25,9 @@ type SliceHeader struct {
 
 ```golang
 func string2bytes(s string) []byte {
-	return *(*[]byte)(unsafe.Pointer(&s))
+	// return *(*[]byte)(unsafe.Pointer(&s)) // 虽然函数可以正常返回，但这是一种错误的方法，cap(s)的值是错误的，并且当使用append()修改返回的[]byte时，会发生panic。
+	// 更多信息见：https://zhuanlan.zhihu.com/p/655665165
+	return unsafe.Slice(unsafe.StringData(s), len(s)) // go1.7+ 推荐
 }
 func bytes2string(b []byte) string{
 	return *(*string)(unsafe.Pointer(&b))
