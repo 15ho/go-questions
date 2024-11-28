@@ -12,3 +12,4 @@ log/
 resources
 public
 data
+.hugo_build.lock
